@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 
 const Home =() =>{
-  console.log('home start')  
+ // console.log('home start')  
   
   const [users , setUser]=useState([]);
     useEffect(()=>{
@@ -30,9 +30,11 @@ const Home =() =>{
   <thead className="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
+      <th scope="col">First</th>  
       <th scope="col">Last</th>
       <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">College</th>
       <td>Action</td>
 
     </tr>
@@ -45,18 +47,25 @@ const Home =() =>{
           <td>{user.name}</td>
           <td>{user.username}</td>
           <td>{user.email}</td>
+          <td>{user.phone}</td>
+          <td>{user.college}</td>
           <td>
-          <Link class="btn btn-primary mr-2" to={`/users/${user.id}`}>
+                  <Link class="btn btn-primary mr-2" to={`/users/${user.id}`}>
                     View
                   </Link>
-                  <Link class="btn btn-outline-primary mr-2"to={`/users/${user.id}`}></Link> 
+                  <Link
+                    class="btn btn-outline-primary mr-2"
+                    to={`/users/edit/${user.id}`}
+                  >
+                    Edit
+                  </Link>
                   <Link
                     class="btn btn-danger"
                     onClick={() => deleteUser(user.id)}
                   >
                     Delete
                   </Link>
-          </td>
+                </td>
         </tr>
         ))
       };

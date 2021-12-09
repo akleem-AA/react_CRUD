@@ -10,11 +10,27 @@
     },
     {
       "name": "demo",
-      "username": "react",
+      "username": "CRUD",
       "email": "reac@gami.com",
       "phone": "123456",
       "website": "",
       "id": 12
+    },
+    {
+      "name": "MVA",
+      "lastName": "group",
+      "email": "mva@gmail.com",
+      "phone": "7302863214",
+      "college": "krishna group of coolege",
+      "id": 14
+    },
+    {
+      "name": "ch",
+      "lastName": "compititive",
+      "email": "ch@gmail.com",
+      "phone": "1246789",
+      "college": "other",
+      "id": 15
     }
   ]
 }

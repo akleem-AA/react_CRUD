@@ -8,6 +8,7 @@ import Navbar from './component/layout/Navbar';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AddUser from "./component/users/AddUser";
 import User from "./component/users/User";
+import EditUser from "./component/users/EditUser";
 
   
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/contact"  component={Contect} />
         <Route exact path="/home"  component={Home} />
         <Route exact path="/users/add" component={AddUser} />
+        <Route exact path="/users/edit/:id" component={EditUser} />
         <Route exact path="/users/:id" component={User} />
 
       </Switch>

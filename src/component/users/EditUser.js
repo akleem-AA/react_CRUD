@@ -1,31 +1,41 @@
-import { useState } from "react";
-import axios from 'axios'
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useHistory, useParams } from "react-router-dom";
 
-const AddUser = () => {
+const EditUser = () => {
   let history = useHistory();
+  const { id } = useParams();
   const [user, setUser] = useState({
     name: "",
-    last_name: "",
-    email: "",  
+    lastName: "",
+    email: "",
     phone: "",
     college: ""
   });
 
-  const { name, last_name, email, phone, college } = user;
+  const { name, lastName, email, phone, college } = user;
   const onInputChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.post("http://localhost:3003/users", user);
+    await axios.put(`http://localhost:3003/users/${id}`, user);
     history.push("/");
+  };
+
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:3003/users/${id}`);
+    setUser(result.data);
   };
   return (
     <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Add A User</h2>
+        <h2 className="text-center mb-4">Edit A User</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -41,9 +51,9 @@ const AddUser = () => {
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Enter Your last-name"
-              name="last_name"
-              value={last_name}
+              placeholder="Enter Your lastName"
+              name="lastName"
+              value={lastName}
               onChange={e => onInputChange(e)}
             />
           </div>
@@ -77,11 +87,11 @@ const AddUser = () => {
               onChange={e => onInputChange(e)}
             />
           </div>
-          <button className="btn btn-primary btn-block">Add User</button>
+          <button className="btn btn-warning btn-block">Update User</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddUser;
+export default EditUser;
